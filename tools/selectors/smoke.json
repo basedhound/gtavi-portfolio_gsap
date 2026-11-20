@@ -1,0 +1,8 @@
+{
+  "// note": "Smoke-test selectors for the live site's hero and navbar. live = rockstargames.com/VI, local = our page.",
+  "body": { "live": "body", "local": "body" },
+  "navbar": { "live": "#data-body > nav", "local": "nav" },
+  "heroDate": { "live": "h5._191jtbmx", "local": "[data-m=hero-tagline]" },
+  "heroButton": { "live": "div._191jtbmk > button", "local": "[data-m=hero-button]" },
+  "cardTitle": { "live": "h4.s7pzuf1u", "local": "[data-m=card-title]" }
+}

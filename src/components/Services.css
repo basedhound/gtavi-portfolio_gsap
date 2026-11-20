@@ -1,0 +1,64 @@
+/*
+  Services (live .gihvh7*). The backdrop is 135lvh tall, pulled up 65lvh under the previous section,
+  z -1. The cards start one screen-and-a-bit later: live puts them at (100lvh − 48u) + 135lvh below the
+  section top from 768 up, and 135lvh below it on phones; the backdrop already fills 70lvh of that.
+  Cards: 8u apart, 32u below. A soft glow (#18182d) sits behind them.
+*/
+.svc {
+  position: relative;
+  /* Keep the backdrop's negative margin inside, so the section's own top (the theme trigger) sits
+     where the previous section ends, as live. */
+  display: flow-root;
+}
+
+.svc__wrap {
+  position: relative;
+  z-index: -1;
+  height: 135lvh;
+  margin-top: -65lvh;
+  visibility: hidden;
+  opacity: 0;
+}
+.svc__video { object-position: center center; }
+@media (min-aspect-ratio: 2.25 / 1) {
+  .svc__video { object-position: 50% 25%; }
+}
+
+.svc__cards {
+  position: relative;
+  box-sizing: border-box;
+  width: 100vw;
+  max-width: 2560px;
+  margin: 65lvh auto 0;
+  padding: 0 var(--gutter) calc(var(--u) * 20);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  row-gap: calc(var(--u) * 8);
+}
+@media (min-width: 768px) {
+  .svc__cards {
+    margin-top: calc(165lvh - var(--u) * 48);
+    padding-bottom: calc(var(--u) * 32);
+  }
+}
+.svc__backdrop {
+  position: absolute;
+  top: -10%;
+  left: 50%;
+  z-index: -1;
+  width: 200vw;
+  height: 200svh;
+  border-radius: 1000px;
+  background: radial-gradient(100% 50% at 50% 50%, #18182d 0%, transparent 90%);
+  transform: translate(-50%, -5%);
+  pointer-events: none;
+}
+@media (min-width: 768px) {
+  .svc__backdrop { height: 100vmax; transform: translate(-50%); }
+}
+
+/* Reduced motion: a static poster, a screen tall, in the flow; no pin or fades. */
+@media (prefers-reduced-motion: reduce) {
+  .svc__wrap { height: 100lvh; margin-top: 0; visibility: visible; opacity: 1; }
+  .svc__cards { margin-top: calc(var(--u) * 20); }
+}

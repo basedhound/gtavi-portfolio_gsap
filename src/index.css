@@ -1,0 +1,121 @@
+@import 'tailwindcss';
+
+/*
+  Fonts: the live site uses Rockstar's ArtDeco family, which we can't ship.
+  Measured on rockstargames.com/VI (tools/measure.mjs --inventory, 1440px):
+    ArtDecoRegular 400 / ArtDecoMedium 500 / ArtDecoBold 700  → body copy, buttons, dates  → Outfit
+    ArtDecoCondensedBold 700, uppercase                        → section and card titles  → Barlow Condensed
+*/
+@font-face {
+  font-family: 'Outfit';
+  src: url('./assets/fonts/outfit-variable.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Barlow Condensed';
+  src: url('./assets/fonts/barlow-condensed-700.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Barlow Condensed';
+  src: url('./assets/fonts/barlow-condensed-900.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --font-sans: 'Outfit', system-ui, sans-serif;
+  --font-condensed: 'Barlow Condensed', 'Outfit', system-ui, sans-serif;
+
+  /* Page background and text, measured on the live site at every width: body rgb(12, 13, 27), text white. */
+  --color-page: #0c0d1b;
+  --color-ink: #ffffff;
+
+  /* Live theme tokens (computed on rockstargames.com/VI, 2026-11-18). */
+  --color-pink: #ffb2c6; /* primary pill background, focus outlines, scroll chevron */
+  --color-pink-hover: #fc97b1; /* nav pill hover */
+  --color-pink-pressed: #f77e9c; /* nav pill pressed */
+  --color-cream: #fff9cb; /* icon hover */
+  --color-cream-pressed: #ebe5b7; /* icon pressed */
+  --color-snow: #fdfbff; /* hero button hover background, skip link background */
+  --color-wine: #9c4958; /* hero button hover text */
+  --color-night: #070810; /* skip link text */
+  --color-blush: #fbd9e0; /* section eyebrows (live rgb(251, 217, 224), Watch scene) */
+}
+
+/*
+  Size scale, ported from the live site's CSS (2026-11-18). Every size is a multiple of one unit:
+    --u = min(1vw, 25.6px) / --x0          (the live site caps the page at 2560px)
+  --x0 steps with the viewport, in the live site's order (later rules win):
+    base 1 · 768–1023 3 · 1024–1439 3.5 · ≥1440 4 · aspect ≥ 2.25:1 4.5 · phone landscape (<768) 2
+  So at 375 → 3.75px, 768 → 2.56px, 1024 → 2.926px, 1440 → 3.6px, 1920 → 4.8px, 2560 → 6.4px.
+  --gutter is the page's side padding (the live grid's outer padding); --col-gap its column gap.
+*/
+:root {
+  --x0: 1;
+  --u: calc(min(1vw, 25.6px) / var(--x0));
+  --gutter: 7.5vw;
+  /* Live grid column gap (--_1uw8doi3): 12px phones, 16px tablets, 20px from 1440, times the live
+     platform scale (1.125 from 1024, 1.25 from 1920, 1.375 from 2560). Measured at every width. */
+  --col-gap: 12px;
+}
+@media (min-width: 768px) { :root { --col-gap: 16px; } }
+@media (min-width: 1024px) { :root { --col-gap: 18px; } }
+@media (min-width: 1440px) { :root { --col-gap: 22.5px; } }
+@media (min-width: 1920px) { :root { --col-gap: 25px; } }
+@media (min-width: 2560px) { :root { --col-gap: 27.5px; } }
+@media (min-width: 768px) and (max-width: 1023.98px) {
+  :root { --x0: 3; }
+}
+@media (min-width: 1024px) and (max-width: 1439.98px) {
+  :root { --x0: 3.5; }
+}
+@media (min-width: 1440px) {
+  :root { --x0: 4; }
+}
+@media (min-aspect-ratio: 2.25 / 1) {
+  :root { --x0: 4.5; }
+}
+@media (max-width: 767.98px) and (orientation: landscape) {
+  :root { --x0: 2; }
+}
+@media (min-width: 1024px) {
+  :root { --gutter: 10vw; }
+}
+@media (min-width: 1440px) {
+  :root { --gutter: 13vw; }
+}
+@media (min-width: 1920px) {
+  :root { --gutter: calc(var(--u) * 64); }
+}
+
+@layer base {
+  html {
+    color-scheme: dark;
+    overflow-x: clip; /* live: html and body clip sideways overflow (wide section glows, zoomed art) */
+    line-height: normal; /* live body: normal; Tailwind's preflight sets 1.5 */
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      transition-duration: 0s !important;
+      animation-duration: 0s !important;
+      animation-iteration-count: 1 !important;
+    }
+  }
+  body {
+    margin: 0;
+    overflow-x: clip;
+    background-color: var(--color-page);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}

@@ -1,0 +1,357 @@
+/*
+  Promo card. Values ported from the live CSS (.s7pzuf*, CTA ._1092chn*) in units of --u; measured
+  at all widths (tools/selectors/cards.json).
+    wide  5:2 (7:3 phone landscape), padding 13u, text MD, radial fade that follows the pointer
+    big   37:20, padding 13u, text LG, vertically centred, no fade
+    half  column: 1:1 spacer + text block under it, text LG centred, linear fade to the bottom
+    tile  column: 3:2 spacer + text block under it, text MD left-aligned, fade from a third down
+          (live Shop cards .s7pzufh.s7pzufw)
+  Headline size: data-size 1–5 from the title length, per shape and breakpoint (live table).
+*/
+.card {
+  --radius: calc(var(--u) * 3);
+  --pad: calc(var(--u) * 13);
+  --mx: -5%;
+  --my: 140%;
+  --t-max: calc(var(--u) * 92);
+  --gap: calc(var(--u) * 3);
+  --clamp-title: 4;
+  --clamp-body: 4;
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  overflow: hidden;
+  padding: var(--pad);
+  border-radius: var(--radius);
+  background: var(--card-bg);
+  color: var(--color-ink);
+  text-decoration: none;
+  user-select: none;
+  transform-origin: 50% center;
+  outline: 4px solid transparent;
+  outline-offset: 4px;
+  transition: outline-color 0.15s ease-out;
+  container-type: inline-size;
+  -webkit-tap-highlight-color: transparent;
+}
+@media (min-width: 768px) {
+  .card { --radius: calc(var(--u) * 7); }
+}
+.card:focus-visible { outline-color: var(--card-accent); }
+
+/* Picture: fills the card behind the text, at .8 opacity until hover/focus. */
+.card__pic {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: block;
+  opacity: 0.8;
+  transform-origin: 50% center;
+  transition: opacity 1s ease-out;
+  will-change: transform;
+}
+.card__pic img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: var(--art-pos, 50% 50%);
+}
+.card:hover .card__pic,
+.card:focus-visible .card__pic { opacity: 1; }
+@media (pointer: coarse) {
+  .card__pic { opacity: 1; }
+}
+
+/* Text block */
+.card__text {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+  max-width: var(--t-max);
+  max-height: 100cqh;
+  transition: filter 1s ease-out;
+}
+.card:hover .card__text,
+.card:focus-visible .card__text {
+  filter: drop-shadow(0 0 10px #fff3) drop-shadow(0 20px 70px var(--card-glow-1));
+}
+.card__text:hover {
+  filter: drop-shadow(0 0 30px #ffffff4d) drop-shadow(0 50px 100px var(--card-glow-2)) !important;
+}
+
+.card__eyebrow {
+  font-family: var(--font-condensed);
+  font-weight: 700;
+  font-size: calc(var(--u) * 5);
+  line-height: 1.1;
+  letter-spacing: 0.0175em;
+  text-transform: uppercase;
+  color: var(--card-eyebrow);
+  text-wrap: balance;
+}
+.card__title {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: var(--clamp-title);
+  overflow: hidden;
+  font-family: var(--font-condensed);
+  font-weight: 700;
+  font-size: var(--title-size);
+  line-height: 0.9;
+  text-transform: uppercase;
+  color: var(--color-cream);
+  text-wrap: balance;
+}
+.card__body {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: var(--clamp-body);
+  overflow: hidden;
+  font-weight: 500;
+  font-size: calc(var(--u) * 4.5);
+  line-height: 1.3;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+/* CTA pill (visual only; the card is the link) */
+.card__cta {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: calc(var(--u) * 2);
+  box-sizing: border-box;
+  width: fit-content;
+  min-width: calc(var(--u) * 24);
+  min-height: calc(var(--u) * 12);
+  margin-top: calc(var(--u) * 3);
+  padding: 0 calc(var(--u) * 6);
+  border-radius: 1000px;
+  font-weight: 500;
+  font-size: calc(var(--u) * 4);
+  line-height: 1;
+  letter-spacing: -0.015em;
+  text-align: center;
+  white-space: nowrap;
+  backdrop-filter: blur(6.25px);
+  pointer-events: none;
+  transition: background 1s ease-out;
+}
+.card__cta svg { width: calc(var(--u) * 5); height: calc(var(--u) * 5); flex-shrink: 0; }
+.card__cta--icon-lead { padding-left: calc(var(--u) * 4.5); }
+.card__cta--icon-trail { padding-right: calc(var(--u) * 4.5); }
+.card__cta--primary { color: var(--color-night); background: var(--color-snow); }
+.card__cta--accent { color: var(--cta-text); background: var(--cta-bg); }
+.card:hover .card__cta,
+.card:focus-visible .card__cta { background: var(--cta-hover); }
+.card:active .card__cta { background: var(--cta-pressed); }
+
+/* Play icon (project cards), centred on the whole card */
+.card__play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 3;
+  width: calc(var(--u) * 16);
+  height: calc(var(--u) * 16);
+  border-radius: 50%;
+  color: var(--color-ink);
+  background: rgb(17 17 23 / 0.4);
+  transform: translate(-50%, -50%);
+  transition: transform 0.5s ease-out, box-shadow 0.5s ease-out, background 0.5s ease-out;
+}
+.card__play svg { display: block; width: 100%; height: 100%; }
+.card:hover .card__play {
+  transform: translate(-50%, -50%) scale(1.05);
+  box-shadow: 0 0 60px rgb(255 255 255 / 0.35);
+}
+.card:active .card__play { background: rgb(17 17 23 / 0.8); }
+
+/* ---------- wide (5:2) ---------- */
+.card--wide {
+  aspect-ratio: 5 / 2;
+  container-type: size;
+  --gap: calc(var(--u) * 2);
+}
+.card--wide .card__eyebrow { font-size: calc(var(--u) * 4.5); line-height: 1.3; letter-spacing: 0.02em; }
+.card--wide .card__body { font-size: calc(var(--u) * 4); line-height: 1.4; }
+.card--wide { --clamp-body: 3; }
+.card--wide .card__pic {
+  mask-image: radial-gradient(100% 200% at var(--mx) var(--my), #00000047 0%, #0000007a 52%, #000 87%);
+}
+.card--wide.card--right { justify-content: flex-end; }
+.card--wide.card--right .card__pic {
+  /* live .s7pzufs: the same offset added to 100% (95% at rest), not mirrored */
+  mask-image: radial-gradient(100% 200% at calc(100% + var(--mx)) var(--my), #00000047 0%, #0000007a 52%, #000 87%);
+}
+
+/* ---------- big (37:20) ---------- */
+.card--big {
+  aspect-ratio: 37 / 20;
+  container-type: size;
+  --clamp-title: 5;
+}
+@media (min-width: 768px) {
+  .card--big { align-items: center; }
+}
+.card--big.card--right { justify-content: flex-end; }
+
+/* ---------- half (project cards) ---------- */
+.card--half {
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  height: 100%;
+  padding: 0;
+}
+.card--half::before {
+  content: '';
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  flex-shrink: 0;
+}
+.card--half .card__text {
+  width: 100%;
+  padding: 0 var(--pad) var(--pad);
+  box-sizing: border-box;
+  align-items: center;
+  text-align: center;
+}
+.card--half .card__pic img { object-position: var(--art-pos, 50% 0%); }
+@media (min-width: 768px) {
+  .card--half .card__pic {
+    mask-image: linear-gradient(0deg, rgb(0 0 0 / 0.2) 0%, rgb(0 0 0 / 0.56) 25.57%, rgb(0 0 0 / 0.9) 59.99%);
+  }
+}
+@media (min-width: 1280px) {
+  .card--half .card__text { padding-left: calc(var(--u) * 8); padding-right: calc(var(--u) * 8); }
+}
+
+/* ---------- tile (Clients cards) ---------- */
+.card--tile {
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: stretch;
+  height: 100%;
+  padding: 0;
+}
+.card--tile::before {
+  content: '';
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  flex-shrink: 0;
+}
+.card--tile .card__text {
+  width: 100%;
+  max-width: none;
+  max-height: none;
+  box-sizing: border-box;
+  padding: 0 var(--pad) var(--pad);
+  --gap: calc(var(--u) * 2);
+}
+.card--tile .card__eyebrow { font-size: calc(var(--u) * 4.5); line-height: 1.3; letter-spacing: 0.02em; }
+.card--tile .card__body { font-size: calc(var(--u) * 4); line-height: 1.4; }
+.card--tile .card__pic {
+  mask-image: linear-gradient(180deg, #000 0%, #000 33.3cqw, rgb(0 0 0 / 0.44) 66.7cqw, rgb(0 0 0 / 0.1) 100%);
+}
+.card--tile .card__pic img { object-position: var(--art-pos, 50% 0%); }
+
+/* ---------- headline sizes (live table, in u) ---------- */
+.card--wide, .card--tile { --t1: 15; --t2: 14; --t3: 13; --t4: 12; --t5: 11; }
+.card--big, .card--half { --t1: 18; --t2: 17; --t3: 16; --t4: 14; --t5: 11; }
+@media (min-width: 1280px) {
+  .card--half { --t1: 13; --t2: 12; --t3: 11; --t4: 10; --t5: 8; }
+}
+.card[data-size='1'] { --title-size: calc(var(--u) * var(--t1)); }
+.card[data-size='2'] { --title-size: calc(var(--u) * var(--t2)); }
+.card[data-size='3'] { --title-size: calc(var(--u) * var(--t3)); }
+.card[data-size='4'] { --title-size: calc(var(--u) * var(--t4)); }
+.card[data-size='5'] { --title-size: calc(var(--u) * var(--t5)); }
+
+/* ---------- portrait phones: every card is a column, text under the image area ---------- */
+@media (max-width: 767.98px) and (orientation: portrait) {
+  .card {
+    --gap: calc(var(--u) * 2);
+    --pad: calc(var(--u) * 8);
+    --clamp-body: 5;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: stretch;
+    aspect-ratio: auto;
+    height: auto;
+    padding: 0;
+    container-type: inline-size;
+  }
+  .card::before {
+    content: '';
+    display: block;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    flex-shrink: 0;
+  }
+  .card--short::before { aspect-ratio: 3 / 2; }
+  .card--tile { height: 100%; }
+  .card--short { --clamp-body: 4; }
+  .card .card__text {
+    width: 100%;
+    max-width: none;
+    max-height: none;
+    box-sizing: border-box;
+    padding: 0 var(--pad) var(--pad);
+  }
+  .card--wide:not(.card--short) .card__text { align-items: center; text-align: center; }
+  .card .card__pic {
+    mask-image: linear-gradient(180deg, #000 0%, #000 50cqw, rgb(0 0 0 / 0.44) 100cqw, rgb(0 0 0 / 0.1) 100%);
+  }
+  .card--short .card__pic {
+    mask-image: linear-gradient(180deg, #000 0%, #000 33.3cqw, rgb(0 0 0 / 0.44) 66.7cqw, rgb(0 0 0 / 0.1) 100%);
+  }
+  .card__pic img { object-position: var(--art-pos-mobile, 50% 0%); }
+  .card__eyebrow,
+  .card--wide .card__eyebrow,
+  .card--tile .card__eyebrow { font-size: calc(var(--u) * 4); line-height: 1.4; }
+  .card__body,
+  .card--wide .card__body,
+  .card--tile .card__body { font-size: calc(var(--u) * 4); line-height: 1.2; }
+  .card__cta {
+    min-height: calc(var(--u) * 10);
+    gap: calc(var(--u) * 1.5);
+    margin-top: calc(var(--u) * 2.5);
+    padding: 0 calc(var(--u) * 5);
+    font-size: calc(var(--u) * 3.5);
+    line-height: 1.5;
+  }
+  .card__cta svg { width: calc(var(--u) * 4); height: calc(var(--u) * 4); }
+  .card__cta--icon-lead { padding-left: calc(var(--u) * 4); }
+  .card__cta--icon-trail { padding-right: calc(var(--u) * 4); }
+  .card--wide:not(.card--short) .card__cta { align-self: center; }
+  /* Live has no focus outline on phones; we keep one (AGENTS.md: visible focus everywhere). */
+  .card:focus-visible { outline-color: var(--card-accent); }
+  /* Sizes: tall cards 12/11/10/10/8u, short 10/9/8/8/8u. */
+  .card { --t1: 12; --t2: 11; --t3: 10; --t4: 10; --t5: 8; }
+  .card--short { --t1: 10; --t2: 9; --t3: 8; --t4: 8; --t5: 8; }
+}
+
+/* ---------- phone landscape (< 768 wide) ---------- */
+@media (max-width: 767.98px) and (orientation: landscape) {
+  .card--tile .card__text { padding: 0 calc(var(--u) * 8) calc(var(--u) * 8); }
+  .card { --pad: calc(var(--u) * 6); --t-max: calc(var(--u) * 44); --gap: calc(var(--u) * 1.5); }
+  .card--wide { aspect-ratio: 7 / 3; }
+  .card { --t1: 7; --t2: 6; --t3: 5; --t4: 5; --t5: 5; }
+  .card__eyebrow, .card--wide .card__eyebrow, .card--tile .card__eyebrow { font-size: calc(var(--u) * 2.5); line-height: 1.4; letter-spacing: 0.0225em; }
+  .card__body, .card--wide .card__body, .card--tile .card__body { font-size: calc(var(--u) * 2.5); line-height: 1.4; }
+  .card__cta { min-height: calc(var(--u) * 8); gap: var(--u); margin-top: calc(var(--u) * 2); padding: 0 calc(var(--u) * 3.5); font-size: calc(var(--u) * 3); line-height: 1.5; }
+  .card__cta svg { width: calc(var(--u) * 3.5); height: calc(var(--u) * 3.5); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card, .card__pic, .card__text, .card__cta, .card__play { transition: none; }
+}

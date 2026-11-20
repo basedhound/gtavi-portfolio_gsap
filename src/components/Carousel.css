@@ -1,0 +1,74 @@
+/*
+  Carousel (see Carousel.jsx). Slides are 1 / --per-page of the row wide with --col-gap between them.
+  Snapping: one card per page → every card snaps; more → only the first and last positions are pages.
+*/
+.carousel {
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+  /* Room for the cards' focus outline (4px + 4px offset) inside the scroller. */
+  margin: -8px;
+  padding: 8px;
+  scroll-padding: 0 8px;
+}
+.carousel::-webkit-scrollbar { display: none; }
+.carousel[data-static] { overflow: visible; scroll-snap-type: none; }
+.carousel[data-dragging] { scroll-snap-type: none; cursor: grabbing; }
+.carousel[data-dragging] * { pointer-events: none; }
+.carousel__track {
+  display: flex;
+  height: 100%;
+  margin: 0 0 0 calc(var(--col-gap) * -1);
+  padding: 0;
+  list-style: none;
+}
+.carousel__slide {
+  flex: 0 0 calc(100% / var(--per-page));
+  box-sizing: border-box;
+  padding-left: var(--col-gap);
+  user-select: none;
+  /* Snap on the slide, not the card: the card's scroll scale (.985) would shift the snap position.
+     The negative margin trims the slide's gap so the card's edge lands on the viewport's. */
+  scroll-snap-align: start;
+  scroll-margin-left: calc(var(--col-gap) * -1);
+}
+.carousel:not([data-per-page='1']) .carousel__slide:last-child { scroll-snap-align: end; }
+.carousel:not([data-per-page='1']) .carousel__slide:not(:first-child):not(:last-child) { scroll-snap-align: none; }
+
+/* Dots pill */
+.carousel__dots-wrap {
+  display: flex;
+  justify-content: center;
+}
+.carousel__dots {
+  box-sizing: border-box;
+  min-width: calc(var(--u) * 16);
+  height: calc(var(--u) * 12);
+  padding: 0 calc(var(--u) * 6);
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: calc(var(--u) * 3);
+  border-radius: 1000px;
+  background: rgb(255 255 255 / 0.05);
+  backdrop-filter: blur(25px);
+}
+.carousel__dot {
+  width: calc(var(--u) * 2);
+  height: calc(var(--u) * 2);
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: #fff3;
+  cursor: pointer;
+  outline: 2px solid transparent;
+  outline-offset: 3px;
+}
+.carousel__dot[aria-current='true'] { background: #fff; }
+.carousel__dot:focus-visible { outline-color: var(--color-pink); }
+
+@media (prefers-reduced-motion: reduce) {
+  .carousel { scroll-behavior: auto; }
+}

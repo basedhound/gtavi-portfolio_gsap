@@ -1,0 +1,23 @@
+/*
+  Wide cards (live ._15id12y0/1): page grid, 16u above, 32u below (10u / 20u on phones), 8u between
+  cards (7u on portrait phones, 4u on landscape phones).
+*/
+.highlights {
+  box-sizing: border-box;
+  width: 100vw;
+  max-width: 2560px;
+  margin: 0 auto;
+  padding: calc(var(--u) * 16) var(--gutter) calc(var(--u) * 32);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  row-gap: calc(var(--u) * 8);
+}
+@media (max-width: 767.98px) {
+  .highlights { padding-top: calc(var(--u) * 10); padding-bottom: calc(var(--u) * 20); }
+}
+@media (max-width: 767.98px) and (orientation: portrait) {
+  .highlights { row-gap: calc(var(--u) * 7); }
+}
+@media (max-width: 767.98px) and (orientation: landscape) {
+  .highlights { row-gap: calc(var(--u) * 4); }
+}

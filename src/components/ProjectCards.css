@@ -1,0 +1,22 @@
+/*
+  Meet the Developer cards (live ._158v41*, page grid ._1uw8doi6). Section padding 32u (20u phones),
+  8u between rows; the carousel (Carousel.jsx) spaces cards by --col-gap (src/index.css).
+*/
+.pcards {
+  box-sizing: border-box;
+  width: 100vw;
+  max-width: 2560px;
+  margin: 135lvh auto 0;
+  padding: calc(var(--u) * 20) var(--gutter);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  row-gap: calc(var(--u) * 8);
+}
+@media (min-width: 768px) {
+  .pcards { padding-top: calc(var(--u) * 32); padding-bottom: calc(var(--u) * 32); }
+}
+
+/* Reduced motion: the scene isn't pinned, so the cards follow it directly. */
+@media (prefers-reduced-motion: reduce) {
+  .pcards { margin-top: 0; }
+}

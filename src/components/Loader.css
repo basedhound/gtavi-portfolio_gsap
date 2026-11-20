@@ -1,0 +1,80 @@
+/*
+  Loader. Values from the live ._2qmne3* rules, with theme variables resolved on the live page
+  (2026-11-18, 375 / 1440 / 2560): logo box 24u (90 / 86 / 154px), glow 1u, z-index 501.
+  Our shape is the wide loader logo (1425:867), so the box keeps the live 24u height and takes its
+  width from the logo's aspect (the live R* mark is square).
+*/
+.loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 501;
+  width: 100dvw;
+  height: 100dvh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(189deg, #1f1f38 0.55%, #18182d 30.38%, #111222 65.19%, #0c0d1b 100%);
+  pointer-events: auto;
+}
+
+.loader__logo {
+  position: relative;
+  height: calc(var(--u) * 24);
+  aspect-ratio: 1425 / 867;
+}
+
+/* The shape, dark (#212020 like the live mark), pulsing 0.2 → 1 → 0.2 with a soft glow behind. */
+.loader__outline {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background: url('../assets/brand/loader-logo.svg') center / 100% 100% no-repeat;
+  filter: drop-shadow(0 0 calc(var(--u) * 1) #38365d);
+  animation: loader-pulse 2.15s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite both;
+}
+
+/* The shape again, its colour breathing #1f1f38 → #38365d, with a pink-to-lilac shimmer sweeping
+   diagonally across inside it. */
+.loader__fill {
+  position: relative;
+  z-index: 501;
+  width: 100%;
+  height: 100%;
+  background: #1f1f38;
+  mask: url('../assets/brand/loader-logo.svg') center / 100% 100% no-repeat;
+  animation: loader-breathe 2.15s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite both;
+}
+.loader__fill::after {
+  content: '';
+  position: absolute;
+  top: -40%;
+  left: -40%;
+  z-index: -1;
+  width: 25%;
+  height: 60%;
+  background: linear-gradient(232deg, #ffb2c6 20%, #988bd0 70%);
+  filter: blur(5px);
+  transform: skew(-45deg, 45deg);
+  animation: loader-sweep 2.15s cubic-bezier(0.77, 0, 0.175, 1) infinite both;
+}
+
+@keyframes loader-sweep {
+  0% { top: -40%; left: -40%; }
+  92% { top: 80%; left: 105%; }
+  100% { top: 80%; left: 105%; }
+}
+@keyframes loader-breathe {
+  0% { background: #1f1f38; }
+  22% { background: #1f1f38; }
+  42% { background: #38365d; }
+  92% { background: #1f1f38; }
+  100% { background: #1f1f38; }
+}
+@keyframes loader-pulse {
+  0% { opacity: 0.2; }
+  22% { opacity: 0.2; }
+  42% { opacity: 1; }
+  92% { opacity: 0.2; }
+  100% { opacity: 0.2; }
+}

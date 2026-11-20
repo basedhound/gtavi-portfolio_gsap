@@ -1,0 +1,12 @@
+{
+  "// note": "Services scroll motion (live Ultimate Edition .gihvh7*, 2026-11-18). Live draws the video on a canvas, we draw a <video>; both get the 1 → 1.1 zoom.",
+  "svc":       { "live": ".gihvh72",            "local": "[data-m=svc]" },
+  "svcWrap":   { "live": ".gihvh75",            "local": "[data-m=svc-wrap]" },
+  "svcMedia":  { "live": ".gihvh75 canvas",     "local": "[data-m=svc-wrap] video" },
+  "svcCards":  { "live": ".gihvh7f",            "local": "[data-m=svc-cards]" },
+  "backdrop":  { "live": ".gihvh7c",            "local": ".svc__backdrop" },
+  "big":       { "live": ".gihvh7f > :is(button,a):first-child", "local": "[data-m=svc-big]" },
+  "wide":      { "live": ".gihvh7f > :is(button,a):nth-child(2)", "local": "[data-m=svc-wide]" },
+  "glow":      { "live": "._1637kzg7",          "local": ".bg-glow" },
+  "fill":      { "live": "._1637kzg5",          "local": ".bg-fill" }
+}

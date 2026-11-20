@@ -1,0 +1,21 @@
+{
+  "// note": "Navbar + hero. live = rockstargames.com/VI (hashed classes, measured 2026-11-18), local = our data-m hooks. Measure the live side with --visible and the no-banner CSS (see AGENTS.md Findings).",
+  "nav":          { "live": "#data-body > nav",               "local": "[data-m=nav]" },
+  "skipLink":     { "live": "nav ._12q75i5e",                 "local": "[data-m=skip-link]" },
+  "navLogo":      { "live": "nav ._12q75i5f",                 "local": "[data-m=nav-logo]" },
+  "navLogoIcon":  { "live": "nav ._12q75i5f > svg",           "local": "[data-m=nav-logo] > svg" },
+  "navRight":     { "live": "nav ._12q75i5j",                 "local": "[data-m=nav-right]" },
+  "navPill":      { "live": "nav ._12q75i5k button",          "local": "[data-m=nav-pill]" },
+  "navMenu":      { "live": "nav button.g0abma3",             "local": "[data-m=nav-menu]" },
+  "navMenuBar":   { "live": "nav .g0abma8",                   "local": "[data-m=nav-menu-bar]" },
+  "hero":         { "live": "._191jtbm0",                     "local": "[data-m=hero]" },
+  "heroInner":    { "live": "._191jtbm1",                     "local": "[data-m=hero-inner]" },
+  "heroPoster":   { "live": "._191jtbm3",                     "local": "[data-m=hero-poster]" },
+  "heroPosterImg":{ "live": "._191jtbm3 picture img",         "local": "[data-m=hero-poster] img" },
+  "heroRow":      { "live": "._191jtbmk",                     "local": "[data-m=hero-row]" },
+  "heroTagline":  { "live": "h5._191jtbmx",                   "local": "[data-m=hero-tagline]" },
+  "heroButton":   { "live": "button._191jtbmy",               "local": "[data-m=hero-button]" },
+  "heroTags":     { "live": "._191jtbmp, ._191jtbmn:has(> svg)", "local": "[data-m=hero-tags]" },
+  "heroTag":      { "live": "svg._191jtbm10",                 "local": "[data-m=hero-tag]" },
+  "heroChevron":  { "live": "svg._191jtbm13",                 "local": "[data-m=hero-chevron]" }
+}

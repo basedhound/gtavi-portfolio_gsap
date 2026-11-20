@@ -1,0 +1,18 @@
+{
+  "// note": "Hero scroll-out + Meet the Developer (live: Launch Trailer / 'Watch' section ._6sjiom*, cards ._158v41*). live = rockstargames.com/VI (hashed classes, 2026-11-18), local = data-m hooks. Measure live with --visible and the no-banner CSS (AGENTS.md Findings).",
+  "navPillWrap":  { "live": "nav ._12q75i5k",                "local": "[data-m=nav-pill-wrap]" },
+  "hero":         { "live": "._191jtbm0",                    "local": "[data-m=hero]" },
+  "heroRow":      { "live": "._191jtbmk",                    "local": "[data-m=hero-row]" },
+  "heroPosterPic":{ "live": "._191jtbm3 > picture",          "local": "[data-m=hero-poster] > picture:not(.hero__layer--intro)" },
+  "heroChevron":  { "live": "svg._191jtbm13",                "local": "[data-m=hero-chevron]" },
+  "mtd":          { "live": "._6sjiom1",                     "local": "[data-m=mtd]" },
+  "scene":        { "live": "._6sjiom2",                     "local": "[data-m=mtd-scene]" },
+  "sceneContent": { "live": "._6sjiom8",                     "local": "[data-m=mtd-content]" },
+  "sceneText":    { "live": "._6sjiom9",                     "local": "[data-m=mtd-text]" },
+  "sceneEyebrow": { "live": "._6sjiomb",                     "local": "[data-m=mtd-eyebrow]" },
+  "sceneTitle":   { "live": "._6sjioma",                     "local": "[data-m=mtd-title]" },
+  "scenePlay":    { "live": "._6sjiomc",                     "local": "[data-m=mtd-play]" },
+  "sceneBg":      { "live": "._6sjiom5",                     "local": "[data-m=mtd-bg]" },
+  "sceneArt":     { "live": "._6sjiom6",                     "local": "[data-m=mtd-art]" },
+  "cards":        { "live": "._158v410",                     "local": "[data-m=mtd-cards]" }
+}

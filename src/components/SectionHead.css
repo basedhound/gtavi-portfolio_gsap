@@ -1,0 +1,74 @@
+/*
+  Live ._82fiuk3: grid "heading action", gap 1.5u 8u. Title (ArtDeco Medium → Outfit 500) 8u / 1.2 /
+  -0.01em from 768px, 6u / 1.3 / -0.0075em below. Link ≥768: 4.5u / 1 / -0.015em, arrow 6u, gap 2u,
+  as tall as the title. Below 768: 8u circle in the section's card colour, frosted, arrow 3.5u; or
+  (shead--plain, Blog) just the 6u arrow, as tall as the title.
+*/
+.shead {
+  display: grid;
+  grid-template-columns: auto min-content;
+  grid-template-areas: 'heading action';
+  grid-auto-rows: min-content;
+  gap: calc(var(--u) * 1.5) calc(var(--u) * 8);
+  width: 100%;
+}
+.shead__title {
+  grid-area: heading;
+  margin: 0;
+  font-weight: 500;
+  font-size: calc(var(--u) * 6);
+  line-height: 1.3;
+  letter-spacing: -0.0075em;
+  color: var(--head-title);
+  text-wrap: balance;
+}
+.shead__link {
+  grid-area: action;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+  box-sizing: border-box;
+  width: calc(var(--u) * 8);
+  height: calc(var(--u) * 8);
+  border-radius: 1000px;
+  color: var(--head-link);
+  background: var(--head-chip);
+  backdrop-filter: blur(6.25px);
+  text-decoration: none;
+  white-space: nowrap;
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  transition: color 0.2s ease-in-out, outline-color 0.2s ease-in-out;
+}
+.shead__link:hover { color: var(--color-cream); }
+.shead__link:focus-visible { outline-color: var(--head-title); }
+.shead__label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+.shead__arrow { display: block; width: calc(var(--u) * 3.5); height: calc(var(--u) * 3.5); flex-shrink: 0; }
+.shead--plain .shead__link { align-self: stretch; width: auto; height: auto; background: none; backdrop-filter: none; }
+.shead--plain .shead__arrow { width: calc(var(--u) * 6); height: calc(var(--u) * 6); }
+
+@media (min-width: 768px) {
+  .shead__title { font-size: calc(var(--u) * 8); line-height: 1.2; letter-spacing: -0.01em; }
+  .shead__link {
+    align-self: stretch;
+    gap: calc(var(--u) * 2);
+    width: auto;
+    height: auto;
+    background: none;
+    backdrop-filter: none;
+    font-weight: 500;
+    font-size: calc(var(--u) * 4.5);
+    line-height: 1;
+    letter-spacing: -0.015em;
+  }
+  .shead__label { position: static; width: auto; height: auto; overflow: visible; clip-path: none; }
+  .shead__arrow { width: calc(var(--u) * 6); height: calc(var(--u) * 6); }
+}

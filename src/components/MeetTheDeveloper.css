@@ -1,0 +1,176 @@
+/*
+  Meet the Developer scene. Values ported from the live CSS (._6sjiom*, ._1v08jgz* play button) and
+  checked against live boxes at all 7 widths (tools/selectors/mtd.json). --s is the live
+  --_6sjiom0: a height-based unit, so the title fits short landscape screens.
+*/
+.mtd {
+  --s: 1.8vh;
+  /* Static, as live (._6sjiom1): its z-index -1 then has no effect. Positioning it would put the
+     whole section, project cards included, under <main>, which then takes every tap, click and swipe. */
+  z-index: -1;
+}
+@media (max-width: 767.98px) and (orientation: portrait) {
+  .mtd { --s: 3vh; }
+}
+@media (min-aspect-ratio: 2.25 / 1), (max-width: 767.98px) and (orientation: landscape) {
+  .mtd { --s: 2.25vh; }
+}
+
+.mtd__scene {
+  position: relative;
+  z-index: 0;
+  display: grid;
+  grid-template: 1fr / 1fr;
+  width: 100vw;
+  height: 135lvh;
+  margin-top: -65lvh;
+}
+
+/* Backdrop: one screen tall, the art cropped to fill it, a purple wash over the top 30%. */
+.mtd__bg {
+  position: relative;
+  z-index: 0;
+  grid-area: 1 / 1;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  visibility: hidden;
+  opacity: 0;
+}
+.mtd__bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: linear-gradient(rgb(48 25 88 / 0.2) 0%, rgb(48 25 88 / 0) 30%);
+}
+@media (max-width: 767.98px) {
+  .mtd__bg::after { background: linear-gradient(rgb(48 25 88 / 0.3) 0%, rgb(48 25 88 / 0) 30%); }
+}
+.mtd__art {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Live crops at 50% 15%. Our developer stands right of centre, so portrait screens (which show a
+     narrow slice) shift the crop right to keep him in view. */
+  object-position: 50% 15%;
+}
+@media (max-aspect-ratio: 1 / 1) {
+  .mtd__art { object-position: 80% 15%; }
+}
+
+/* Title at the top, play button in the middle of the screen. */
+.mtd__content {
+  position: relative;
+  z-index: 1;
+  grid-area: 1 / 1;
+  height: 100dvh;
+  padding: 4% var(--gutter) min(calc(var(--u) * 8), calc(var(--s) * 2));
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  will-change: transform;
+}
+@media (min-aspect-ratio: 2.25 / 1), (max-width: 767.98px) and (orientation: landscape) {
+  .mtd__content { padding-top: 3%; }
+}
+@media (max-width: 767.98px) and (orientation: portrait) {
+  .mtd__content { padding: 20% min(calc(var(--u) * 4), var(--s)) min(calc(var(--u) * 8), calc(var(--s) * 2)); }
+}
+
+.mtd__text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: min(calc(var(--u) * 4), var(--s));
+  will-change: opacity;
+  visibility: hidden;
+  opacity: 0;
+}
+@media (orientation: portrait) {
+  .mtd__text { justify-content: center; min-height: 20%; }
+}
+@media (max-width: 767.98px) and (orientation: portrait) {
+  .mtd__text { gap: min(calc(var(--u) * 3), calc(var(--s) * 0.75)); }
+}
+
+.mtd__eyebrow {
+  margin: 0;
+  font-family: var(--font-condensed);
+  font-weight: 700;
+  font-size: min(calc(var(--u) * 6), calc(var(--s) * 1.5));
+  line-height: 1.1;
+  letter-spacing: 0.015em;
+  text-transform: uppercase;
+  color: var(--color-blush);
+}
+@media (max-width: 767.98px) and (orientation: portrait) {
+  .mtd__eyebrow { font-size: min(calc(var(--u) * 5), calc(var(--s) * 1.25)); letter-spacing: 0.0175em; }
+}
+
+.mtd__title {
+  margin: 0;
+  font-weight: 700;
+  font-size: min(calc(var(--u) * 16), calc(var(--s) * 4));
+  line-height: 1.1;
+  letter-spacing: 0.15em;
+  text-align: center;
+  text-transform: uppercase;
+  color: var(--color-ink);
+  text-shadow: 0 0 32px rgb(255 255 255 / 0.3);
+  will-change: opacity;
+}
+@media (min-aspect-ratio: 2.25 / 1), (max-width: 767.98px) and (orientation: landscape) {
+  .mtd__title { font-size: min(calc(var(--u) * 12), calc(var(--s) * 3)); }
+}
+@media (max-width: 767.98px) and (orientation: portrait) {
+  .mtd__title { font-size: min(calc(var(--u) * 8), calc(var(--s) * 2)); line-height: 1; }
+}
+
+/* Play button (live ._1v08jgz0 + ._6sjiomc) */
+.mtd__play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 3;
+  width: max(5vw, 10vh);
+  height: max(5vw, 10vh);
+  display: block;
+  box-sizing: border-box;
+  border-radius: 50%;
+  color: rgb(255 255 255 / 0.9);
+  background: rgb(17 17 23 / 0.2);
+  backdrop-filter: blur(6.25px);
+  outline: 4px solid transparent;
+  outline-offset: 4px;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition-property: color, background-color, outline-color, transform, box-shadow;
+  transition-duration: 0.5s;
+  transition-timing-function: ease-out;
+}
+@media (min-width: 1440px) {
+  .mtd__play { width: max(7vw, 10vh); height: max(7vw, 10vh); }
+}
+.mtd__play svg { display: block; width: 100%; height: 100%; }
+.mtd__play:hover {
+  color: var(--color-ink);
+  background: rgb(17 17 23 / 0.3);
+  box-shadow: 0 0 60px rgb(255 255 255 / 0.35);
+  transform: translate(-50%, -50%) scale(1.05);
+}
+.mtd__play:active {
+  color: var(--color-ink);
+  background: rgb(17 17 23 / 0.4);
+  transform: translate(-50%, -50%) scale(0.93);
+}
+.mtd__play:focus-visible { outline-color: var(--color-pink); }
+
+/* Reduced motion: no pin or fades; the scene is a plain screen-tall block in the page flow. */
+@media (prefers-reduced-motion: reduce) {
+  .mtd__scene { height: 100lvh; margin-top: 0; }
+  .mtd__bg, .mtd__text { visibility: visible; opacity: 1; }
+  .mtd__play { opacity: 1; }
+}
