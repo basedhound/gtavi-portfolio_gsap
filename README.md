@@ -1,17 +1,18 @@
 <div align="center">
   <br />
-    <a href="" target="_blank">
+    <a href="https://youtu.be/dYUQY4LJoIg" target="_blank">
       <img src="public/readme/readme-hero.webp" alt="Project Banner">
     </a>
   <br />
 
   <div>
-<img src="https://img.shields.io/badge/-Next.js-black?style=for-the-badge&logo=Next.js&logoColor=white" />
-<img src="https://img.shields.io/badge/-Typescript-3178C6?style=for-the-badge&logo=Typescript&logoColor=white" />
-
+<img src="https://img.shields.io/badge/-React-61DAFB?style=for-the-badge&logo=react&logoColor=white" />
+<img src="https://img.shields.io/badge/-Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white" />
+<img src="https://img.shields.io/badge/-Tailwind_CSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white" />
+<img src="https://img.shields.io/badge/-GSAP-0AE448?style=for-the-badge&logo=greensock&logoColor=white" />
   </div>
 
-  <h3 align="center">Project Title Here</h3>
+  <h3 align="center">GTA VI-Inspired Portfolio</h3>
 
    <div align="center">
      Build this project step by step with our detailed tutorial on <a href="https://www.youtube.com/watch?v=XUkNR-JfHwo" target="_blank"><b>JavaScript Mastery</b></a> YouTube. Join the JSM family!
@@ -33,11 +34,13 @@ This repository contains the code corresponding to an in-depth tutorial availabl
 
 If you prefer visual learning, this is the perfect resource for you. Follow our tutorial to learn how to build projects like these step-by-step in a beginner-friendly manner!
 
-<a href="" target="_blank"><img src="https://github.com/sujatagunale/EasyRead/assets/151519281/1736fca5-a031-4854-8c09-bc110e3bc16d" /></a>
+<a href="https://youtu.be/dYUQY4LJoIg" target="_blank"><img src="https://github.com/sujatagunale/EasyRead/assets/151519281/1736fca5-a031-4854-8c09-bc110e3bc16d" /></a>
 
 ## <a name="introduction">✨ Introduction</a>
 
-AI-powered Nike-style eCommerce built with Devin AI, Next.js, Drizzle ORM, and Better Auth! Devin generates your product pages, cart, and checkout flows—powered by Stripe payments and a PostgreSQL (Neon) backend. Featuring a clean, modular UI and tools tailored for devs who want to ship fast.
+Grand Theft Developer is a cinematic, GTA VI-inspired developer portfolio built entirely with AI. It recreates the layout and motion of a game launch site: a layered hero intro, pinned scenes, scroll-scrubbed video backdrops and parallax promo cards. The content, artwork and videos are all original, so the result is a portfolio of your own, not a copy of someone else's site.
+
+Built with React, GSAP and Lenis, the project shows how to study a reference site, measure its layout and timing, and rebuild its scroll animations frame by frame. All of the copy lives in a single content file, so you can make the site yours by editing one file and swapping the artwork.
 
 If you're getting started and need assistance or face any bugs, join our active Discord community with over **50k+** members. It's a place where people help each other out.
 
@@ -45,37 +48,41 @@ If you're getting started and need assistance or face any bugs, join our active 
 
 ## <a name="tech-stack">⚙️ Tech Stack</a>
 
-- **[Better Auth](https://www.better-auth.com/)** is a framework-agnostic authentication and authorization library for TypeScript. It provides built-in support for email and password authentication, social sign-on (Google, GitHub, Apple, and more), and multi-factor authentication, simplifying user authentication and account management.
+- **[GSAP](https://gsap.com/)** is a high-performance JavaScript animation library for building complex, timeline-based motion. Together with its ScrollTrigger plugin, it drives the hero intro, the pinned sections, the video scrubbing and the card parallax, all tied precisely to scroll position.
 
-- **[Devin AI](https://docs.devin.ai/get-started/devin-intro)** is an autonomous AI software engineer by Cognition Labs that independently plans, writes, debugs, and deploys full applications from natural language prompts. It integrates with tools like Slack, Linear, and Jira to manage tasks and pull requests, and learns new technologies on the fly by reading documentation.
+- **[Lenis](https://lenis.darkroom.engineering/)** is a lightweight smooth-scroll library that makes native scrolling feel fluid while keeping it accessible. It gives the portfolio its cinematic glide and stays in sync with GSAP's scroll-driven animations.
 
-- **[Drizzle ORM](https://orm.drizzle.team/docs/overview)** is a lightweight and performant TypeScript ORM designed with developer experience in mind. It provides a seamless interface between application code and database operations while maintaining high performance and reliability.
+- **[React](https://react.dev/)** is a JavaScript library for building user interfaces from reusable components. It structures the portfolio into self-contained sections (Hero, Meet the Developer, Services, Miami, Highlights, Clients, Blog and Footer) that read their copy from a single content file.
 
-- **[Neon](https://neon.com/)** is a fully managed, serverless PostgreSQL database platform. It offers features like instant provisioning, autoscaling, and database branching, enabling developers to build scalable applications without managing infrastructure.
+- **[Tailwind CSS](https://tailwindcss.com/)** is a utility-first CSS framework for styling directly in your markup. It sits alongside component-level CSS here to handle the responsive layout, the type scale and the visual details across every breakpoint.
 
-- **[Next.js](https://nextjs.org/docs)** is a powerful React framework for building full-stack web applications. It simplifies development with features like server-side rendering, static site generation, and API routes, enabling developers to focus on building products and shipping quickly.
-
-- **[PostgreSQL](https://www.postgresql.org/)** is a powerful, open-source relational database system known for its reliability, data integrity, and robust feature set. It supports advanced data types, full ACID compliance, and extensibility, making it suitable for a wide range of applications.
-
-- **[Stripe](https://stripe.com/)** is a payment gateway that enables businesses to accept, process, and manage various payment methods, such as credit cards, debit cards, and digital wallets, in a secure and efficient manner. It simplifies the payment process for developers and businesses alike.
-
-- **[TypeScript](https://www.typescriptlang.org/)** is a superset of JavaScript that adds static typing, providing better tooling, code quality, and error detection for developers. It is ideal for building large-scale applications and enhances the development experience.
-
-- **[Zustand](https://zustand-demo.pmnd.rs)** is a minimal, hook-based state management library for React. It lets you manage global state with zero boilerplate, no context providers, and excellent performance through selective state subscriptions.
+- **[Vite](https://vite.dev/)** is a fast frontend build tool with instant dev-server startup and hot module replacement. It powers local development and produces the optimized production build.
 
 ## <a name="features">🔋 Features</a>
 
-👉 **Landing Page**: A fast, engaging homepage that introduces your brand and products with smooth animations and clear calls to action.
+👉 **Cinematic Loader**: A branded loading screen that waits for the fonts and hero artwork to decode before revealing the page, with a timeout fallback.
 
-👉 **Product Listing Page**: Browse all products with filters, sorting, and real-time availability—powered by Devin AI-generated content for dynamic updates.
+👉 **Layered Hero Intro**: Ten artwork pieces and logo layers animate onto a canvas, the content zooms into place, and the intro hands off seamlessly to a static poster with no flicker.
 
-👉 **Auth Pages**: Secure and seamless user signup, login, and password recovery using Better Auth, ensuring smooth access without backend hassles.
+👉 **Scroll-Scrubbed Videos**: Videos play frame by frame as you scroll, decoded into memory with WebCodecs for smooth playback, with a seek-based fallback for iOS.
 
-👉 **Product Details Page**: Detailed product info, images, and reviews with AI-enhanced descriptions to help customers make confident buying decisions.
+👉 **Portrait Video Renditions**: Phones in portrait get a 9:16 crop that follows the subject, built on the fly from a single hosted video.
 
-👉 **Cart Page**: Intuitive cart management allowing users to add, remove, and update quantities, with instant price recalculations and persistent state via Zustand.
+👉 **Pinned Scenes**: The "Meet the Developer" section pins in place while a featured card and project cards scroll into view.
 
-👉 **Order Page**: Track order history and status with reliable data stored in PostgreSQL (Neon), plus secure payments handled by Stripe integration.
+👉 **Parallax Promo Cards**: Cards scale up as they enter the viewport, their artwork drifts against the scroll, and on wide cards the image fade follows the pointer.
+
+👉 **Responsive Carousels**: Card rows turn into swipeable, scroll-snapping carousels with drag support and page dots on smaller screens.
+
+👉 **Cursor Glow**: A soft light behind the page follows the pointer and fades in and out between sections.
+
+👉 **Smooth Scrolling**: Lenis-powered smooth scrolling keeps every animation fluid and in sync.
+
+👉 **Single Content File**: All copy and links live in `src/content.js`, so you can personalize the whole portfolio without touching components.
+
+👉 **Accessible by Default**: A static, readable version for `prefers-reduced-motion`, plus full keyboard navigation with visible focus outlines.
+
+👉 **Fully Responsive**: Layouts, crops and motion are tuned for phones, tablets, laptops and ultra-wide screens.
 
 And many more, including code architecture and reusability.
 
@@ -94,8 +101,7 @@ Make sure you have the following installed on your machine:
 **Cloning the Repository**
 
 ```bash
-git clone
-cd
+git clone [git remote URL]
 ```
 
 **Installation**
@@ -106,40 +112,29 @@ Install the project dependencies using npm:
 npm install
 ```
 
-**Set Up Environment Variables**
-
-Create a new file named `.env` in the root of your project and add the following content:
-
-```env
-
-```
-
-Replace the placeholder values with your real credentials. You can get these by signing up at: [**Example**](https://jsm.dev/example).
-
 **Running the Project**
 
 ```bash
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser to view the project.
+Open [http://localhost:5173](http://localhost:5173) in your browser to view the project.
 
 ## <a name="links">🔗 Assets</a>
 
-Assets and snippets used in the project can be found in the **[video kit]()**.
+Assets and snippets used in the project can be found in the **[video kit](https://jsmastery.com/video-kit/07817e83-03d3-4026-a9bc-fd74bb747218)**.
 
-<a href="" target="_blank">
+<a href="https://jsmastery.com/video-kit/07817e83-03d3-4026-a9bc-fd74bb747218" target="_blank">
   <img src="public/readme/readme-videokit.webp" alt="Video Kit Banner">
 </a>
 
 ## <a name="more">🚀 More</a>
 
-**Advance your skills with Next.js Pro Course**
+**Advance your skills with our Pro Course**
 
 Enjoyed creating this project? Dive deeper into our PRO courses for a richer learning adventure. They're packed with
 detailed explanations, cool features, and exercises to boost your skills. Give it a go!
 
-<a href="" target="_blank">
+<a href="https://jsmastery.com/course/agentic-engineering-course" target="_blank">
   <img src="public/readme/readme-jsmpro.webp" alt="Project Banner">
 </a>
-# GTAVI-landing_gsap
